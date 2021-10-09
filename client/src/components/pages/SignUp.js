@@ -36,10 +36,10 @@ function Register() {
      });
   };
 
- /* const displayinfo = () => {
+ const displayinfo = () => {
     console.log(Name + city + PhoneNumber + servesesoffered + Email + password + resetpassword );
 
-  };*/
+  };
 
   return (
     <div class="container">
@@ -47,6 +47,7 @@ function Register() {
         <h1>SIGN UP</h1> <br />
         <p>Please fill your information to create your account.</p> <br />
         <ColorblackLine color="black" />
+      
         <label for="name">
           <b>Your Name OR Your Company Name</b>
         </label>
