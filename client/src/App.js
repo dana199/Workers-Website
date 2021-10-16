@@ -8,6 +8,7 @@ import SignUp from './components/pages/SignUp';
 import login from './components/pages/login';
 import resetpassword from './components/pages/resetpassword';
 
+
 function App() {
   return (
     <>
@@ -18,6 +19,7 @@ function App() {
      <Route path='/sign-up' component={SignUp} />
      <Route path='/log-in' component={login} />
      <Route path='/reset-pass' component={resetpassword} />
+    
    </Switch>
    </Router>
     </>

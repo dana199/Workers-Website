@@ -1,4 +1,4 @@
-import React ,{useState} from "react";
+import React ,{useState,useEffect} from "react";
 import "./SignUp.css";
 import { Link } from "react-router-dom";
 import Axios from 'axios';
@@ -21,25 +21,40 @@ function Register() {
   const [password,setpassword] =  useState('');
   const [resetpassword,setresetpassword] =  useState('');
 
+
+
   const register = () =>
   {
-     Axios.post("http://localhost:3000/sign-up",{
+     Axios.post("http://localhost:3001/api/insert",{
        Name: Name,
-       city: city,
-       PhoneNumber:PhoneNumber,
-       servesesoffered: servesesoffered,
+       City: city,
+       phoneNumber:PhoneNumber,
+       servicesoffered: servesesoffered,
        Email: Email,
        password:password,
        resetpassword:resetpassword
-     }).then((response)=>{
-       console.log(response);
+     }).then(()=>{
+       alert("successful Insert");
      });
   };
+  useEffect (() =>{
+    Axios.get("http://localhost:3001/api/get").then((response)=>{
+      console.log(response);
+    })
+  },[])
 
- const displayinfo = () => {
-    console.log(Name + city + PhoneNumber + servesesoffered + Email + password + resetpassword );
-
-  };
+  /*function handleSubmit(e) {
+    e.preventDefault();
+    console.log(Name,city,PhoneNumber,servesesoffered,Email,password,resetpassword);
+    // clearing the values
+    setusername("");
+    setcity("");
+    setPhoneNumber("");
+    setservesesoffered("");
+    setemail("");
+    setpassword("");
+    setresetpassword("");
+  }*/
 
   return (
     <div class="container">
