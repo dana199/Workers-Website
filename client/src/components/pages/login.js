@@ -20,11 +20,11 @@ function Login() {
     const [loginStatus, setLoginStatus] = useState("");
     Axios.defaults.withCredentials = true;
 
-    const loginbutt = () => {
-  Axios.post("http://localhost:3001/api/login",{
+  const loginbutt = () => {
+    Axios.post("http://localhost:3001/api/login",{
       username: username,
       password: password,
-  }).then((response)=>{
+       }).then((response)=>{
     if (response.data.message) {
         setLoginStatus(response.data.message);
       } else {
@@ -57,7 +57,8 @@ function Login() {
        id="psw" required/>
       <button type='submit'
       onClick={loginbutt}
-      class="registerbtn">Log in </button>
+      class="registerbtn" 
+      a href="/userprofile">Log in </button>
 
            <h1>{loginStatus}</h1>
 
