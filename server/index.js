@@ -3,17 +3,17 @@ const cors =require('cors');
 const mysql=require('mysql');
 
 const bodyParser= require('body-parser');
-const cookieParser = require("cookie-parser");
-const session = require("express-session");
-const bcrypt = require("bcrypt");
-const saltRounds = 10;
+//const cookieParser = require("cookie-parser");
+//const session = require("express-session");
+//const bcrypt = require("bcrypt");
+//const saltRounds = 10;
 
 const app = express();
 
 
 const PORT = process.env.PORT || 3001; //set the port to 3001
 
-app.use(
+/*app.use(
   session({
     key: "userId",
     secret: "subscribe",
@@ -23,7 +23,7 @@ app.use(
       expires: 60 * 60 * 24,
     },
   })
-);
+);*/
 
 const connection = mysql.createConnection({
 host: 'localhost',
@@ -39,7 +39,7 @@ connection.connect(function(err){
 
 app.use(cors());
 app.use(express.json());
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.get ('/api/get',function(req,res){
@@ -50,37 +50,6 @@ connection.query(sqlselect,(err,result)=>{
 });
 })
 
-app.get("/login", (req, res) => {
-  if (req.session.user) {
-    res.send({ loggedIn: true, user: req.session.user });
-  } else {
-    res.send({ loggedIn: false });
-  }
-});
-
-app.post('/api/login',function(req,res){
-    const username = req.body.username;
-    const password = req.body.password;
-    const sqlsel="SELECT * FROM mworkers WHERE username = ? AND password =?;"
-    connection.query(sqlsel,[username,password],(err,result)=>{
-      if (err) {
-        res.send({ err: err });
-      }
-      if (result.length > 0) {
-        bcrypt.compare(password, result[0].password, (error, response) => {
-          if (response) {
-            req.session.user = result;
-            console.log(req.session.user);
-            res.send(result);
-          } else {
-            res.send({ message: "Wrong username/password combination!" });
-          }
-        });
-      } else {
-        res.send({ message: "User doesn't exist" });
-      }
-    });
-})
 app.post ("/api/insert", function(req,res){
     const Name=req.body.Name
     const City=req.body.City
@@ -101,6 +70,40 @@ app.post ("/api/insert", function(req,res){
 });
 //require('./routes/html-routes')(app);
 //start the server//
+
+/*app.get("/login", (req, res) => {
+  if (req.session.user) {
+    res.send({ loggedIn: true, user: req.session.user });
+  } else {
+    res.send({ loggedIn: false });
+  }
+});
+*/
+app.post('/api/login',function(req,res){
+    const username = req.body.username;
+    const password = req.body.password;
+    const sqlsel="SELECT * FROM mworkers WHERE Name = ? AND password = ?;"
+    connection.query(sqlsel,[username,password],(err,result)=>{
+      if (err) {
+      res.send({ err: err });
+      }
+      if (result) {
+        res.send(result);}
+        else{res.send({ message: "User doesn't exist" });}
+      /*  bcrypt.compare(password, result[0].password, (error, response) => {
+          if (response) {
+            req.session.user = result;
+            console.log(req.session.user);
+            res.send(result);
+          } else {
+            res.send({ message: "Wrong username/password combination!" });
+          }
+        });
+      } else {
+        res.send({ message: "User doesn't exist" });
+      }*/
+    });
+})
 app.listen(PORT, () =>{
     console.log("APP running on port 3001" );
 });

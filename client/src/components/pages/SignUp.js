@@ -43,19 +43,6 @@ function Register() {
     })
   },[])
 
-  /*function handleSubmit(e) {
-    e.preventDefault();
-    console.log(Name,city,PhoneNumber,servesesoffered,Email,password,resetpassword);
-    // clearing the values
-    setusername("");
-    setcity("");
-    setPhoneNumber("");
-    setservesesoffered("");
-    setemail("");
-    setpassword("");
-    setresetpassword("");
-  }*/
-
   return (
     <div class="container">
       <form >

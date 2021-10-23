@@ -18,13 +18,14 @@ function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loginStatus, setLoginStatus] = useState("");
-    Axios.defaults.withCredentials = true;
+    //Axios.defaults.withCredentials = true;
 
   const loginbutt = () => {
     Axios.post("http://localhost:3001/api/login",{
       username: username,
       password: password,
        }).then((response)=>{
+
     if (response.data.message) {
         setLoginStatus(response.data.message);
       } else {
@@ -33,14 +34,14 @@ function Login() {
   });
       };
 
-      useEffect(() => {
+      /*useEffect(() => {
         Axios.get("http://localhost:3001/api/login").then((response) => {
           if (response.data.loggedIn == true) {
             setLoginStatus(response.data.user[0].username);
           }
         });
       }, []);
-
+*/
     return (
         <div class="container">
            <form>
@@ -55,13 +56,12 @@ function Login() {
       <input type='password' placeholder="Enter Password" name="psw" 
       onChange={(e)=>{setPassword(e.target.value)}}
        id="psw" required/>
-      <button type='submit'
+    
+     <button type='submit'
       onClick={loginbutt}
       class="registerbtn" 
-      a href="/userprofile">Log in </button>
-
-           <h1>{loginStatus}</h1>
-
+      a href ="UserProfile.js"
+     >Log in </button> 
       <div class="container signin">
       <p>Don't have an account?<a href="/Sign-Up">Sign up</a>.</p>
 
