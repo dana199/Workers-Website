@@ -3,6 +3,7 @@ import "./SignUp.css";
 import { Link } from "react-router-dom";
 import Axios from 'axios';
 
+
 function Register() {
   const ColorblackLine = ({ color }) => (
     <hr
@@ -15,8 +16,10 @@ function Register() {
   );
   const [Name,setusername] =  useState('');
   const [city,setcity] =  useState('');
+  const handleChange = (event) =>{ setcity(event.target.value); };
   const [PhoneNumber,setPhoneNumber] =  useState('');
   const [servesesoffered,setservesesoffered] =  useState('');
+  const handlechange2 =(event) =>{setservesesoffered(event.target.value);};
   const [Email,setemail] =  useState('');
   const [password,setpassword] =  useState('');
   const [resetpassword,setresetpassword] =  useState('');
@@ -43,6 +46,7 @@ function Register() {
     })
   },[])
 
+
   return (
     <div class="container">
       <form >
@@ -64,14 +68,12 @@ function Register() {
         <label for="City">
           <b> City</b>
         </label>
-        <input
-          type="text"
-          placeholder="Enter City"
-          name="city"
-          onChange={(e)=>{setcity(e.target.value)}}
-          id="city"
-          required
-        />
+        <select  name ="city" value={city} label="city" onChange={handleChange}>
+          <option>Nablus</option>
+          <option>Jenin</option>
+          <option>Ramallah</option>
+          </select>
+      
         <label for="PhoneNumber">
           <b> Phone Number</b>
         </label>
@@ -87,14 +89,18 @@ function Register() {
         <label for="services">
           <b>Services that are offered</b>
         </label>
-        <input
-          type="text"
-          placeholder="Enter Services that are offered"
-          name="services"
-          onChange={(e)=>{setservesesoffered(e.target.value)}}
-          id="services"
-          required
-        />
+        <select name="services" value={servesesoffered} onChange={handlechange2}>
+          <option>Electricals</option>
+          <option>Carpentry</option>
+          <option>furniture transfare</option>
+          <option>painting</option>
+          <option>Cleaning</option>
+          <option>plumping</option>
+          <option>Car Washing</option>
+          <option>Air condition</option>
+          <option>Blacksmith</option>
+          </select>
+
         <label for="email">
           <b>Email</b>
         </label>

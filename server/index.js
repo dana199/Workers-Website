@@ -9,8 +9,6 @@ const bodyParser= require('body-parser');
 //const saltRounds = 10;
 
 const app = express();
-
-
 const PORT = process.env.PORT || 3001; //set the port to 3001
 
 /*app.use(
@@ -44,7 +42,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.get ('/api/get',function(req,res){
 const sqlselect=
-"SELECT * FROM mworkers;"
+"SELECT * FROM users;"
 connection.query(sqlselect,(err,result)=>{
    res.send(result);
 });
@@ -60,7 +58,7 @@ app.post ("/api/insert", function(req,res){
     const resetpassword=req.body.resetpassword
 
     const sqlinsert =
-  "INSERT INTO mworkers(Name,City,phoneNumber,servicesoffered,Email,password,resetpassword) VALUES (?,?,?,?,?,?,?);"
+  "INSERT INTO users(Name,City,phoneNumber,servicesoffered,Email,password,resetpassword) VALUES (?,?,?,?,?,?,?);"
     connection.query(sqlinsert,[Name,City,phoneNumber,servicesoffered,Email,password,resetpassword],(err,result)=>{
         console.log(err);
     });
@@ -82,7 +80,7 @@ app.post ("/api/insert", function(req,res){
 app.post('/api/login',function(req,res){
     const username = req.body.username;
     const password = req.body.password;
-    const sqlsel="SELECT * FROM mworkers WHERE Name = ? AND password = ?;"
+    const sqlsel="SELECT * FROM users WHERE Name = ? AND password = ?;"
     connection.query(sqlsel,[username,password],(err,result)=>{
       if (err) {
       res.send({ err: err });

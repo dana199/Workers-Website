@@ -14,7 +14,7 @@ function resetpassword(){
     return (
         <div class="container">
            <form>
-          <h1>Log in</h1> 
+          <h1>Reset Password</h1> 
           <ColorblackLine color="black" />
           <label for="cpass"><b>Current password</b></label>
           <input type='text' placeholder="Current password" name="cpass" id="cpass" required/>

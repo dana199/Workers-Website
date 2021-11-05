@@ -2,9 +2,11 @@ import React,{useState,useEffect} from 'react';
 import './Navbar.css';
 import {Link} from 'react-router-dom';
 import { Button } from './Button';
+import { useTranslation } from "react-i18next";
 
 
 function Navbar() {
+  const { t } = useTranslation();
     const [click,setClick] =useState(false);
     const handleClick = () =>setClick(!click);
     const closeMobileMenu = () =>setClick(false);
@@ -25,7 +27,7 @@ function Navbar() {
       <nav className="navbar">
          <div className="navbar-container">
       <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>    
-      Home Services<i className="fas fa-tools"></i> 
+     {t('Home Services')}<i className="fas fa-tools"></i> 
           </Link>
           <div className='menu-icon' onClick={handleClick}>
               <i className={click ? 'fas fa-times' : 'fas fa-bars'}/>
@@ -33,19 +35,15 @@ function Navbar() {
          <ul className={click ? 'nav-menu active' : 'nav-menu'}>
              <li className='nav-item'>
                  <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                     Home
+                   {t('Home')}
                  </Link>
              </li>
              <li className='nav-item'>
                  <Link to='/services' className='nav-links' onClick={closeMobileMenu}>
-                    About 
+                   { t('About') }
                  </Link>
              </li>
-             <li className='nav-item'>
-                 <Link to='/products' className='nav-links' onClick={closeMobileMenu}>
-                   products
-                 </Link>
-             </li>
+          
              <li>
               <Link
                 to='/sign-up'
@@ -54,6 +52,7 @@ function Navbar() {
               >
                 Sign Up
               </Link>
+          
             </li>
         
          </ul>
