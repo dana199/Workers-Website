@@ -2,8 +2,10 @@
 import React, { useState,useEffect } from 'react';
 import './login.css';
 import Axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 function Login() {
+    let history = useHistory();
 
     const ColorblackLine = ({ color }) => (
         <hr
@@ -17,55 +19,65 @@ function Login() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
+    const[name,setName]=useState("");
     const [loginStatus, setLoginStatus] = useState("");
     //Axios.defaults.withCredentials = true;
 
-  const loginbutt = () => {
-    Axios.post("http://localhost:3001/api/login",{
-      username: username,
-      password: password,
-       }).then((response)=>{
+const loginbutt = () => {
+    fetch("http://localhost:3001/api/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.success === true) {
+          console.log(res);
+        }
+      })
+      .done();
+      history.push('/UserProfile')
+  };
 
-    if (response.data.message) {
-        setLoginStatus(response.data.message);
-      } else {
-        setLoginStatus(response.data[0].username);
-      }
-  });
-      };
 
-      /*useEffect(() => {
+      useEffect(() => {
         Axios.get("http://localhost:3001/api/login").then((response) => {
           if (response.data.loggedIn == true) {
             setLoginStatus(response.data.user[0].username);
           }
         });
       }, []);
-*/
+
     return (
-        <div class="container">
+        <div class="Container">
            <form>
           <h1>Log in</h1> 
           <ColorblackLine color="black" />
-          <label for="uname"><b>User name</b></label>
-          <input type='text' placeholder="Enter User name" name="uname"
+          <label for="username"><b>User name</b></label>
+          <input type='text' placeholder="Enter User name" name="username"
           onChange={(e)=>{setUsername(e.target.value)}}
           id="uname" required/>
 
-          <label for="psw"><b>Password</b></label>
-      <input type='password' placeholder="Enter Password" name="psw" 
+          <label for="password"><b>Password</b></label>
+      <input type='password' placeholder="Enter Password" name="password" 
       onChange={(e)=>{setPassword(e.target.value)}}
        id="psw" required/>
     
      <button type='submit'
-      onClick={loginbutt}
-      class="registerbtn" 
-      a href ="UserProfile.js"
+      onClick={()=>{history.push('/UserProfile')}}
+      class="registerbtn"
      >Log in </button> 
-      <div class="container signin">
+      <div class="Container signin">
       <p>Don't have an account?<a href="/Sign-Up">Sign up</a>.</p>
 
-      <div class="container signin">
+      <div class="Container signin">
       <p>Forget passward?<a href="/reset-pass">Reset </a>.</p> </div>
     </div>
   </form>

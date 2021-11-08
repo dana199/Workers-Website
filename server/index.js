@@ -5,7 +5,7 @@ const mysql=require('mysql');
 const bodyParser= require('body-parser');
 //const cookieParser = require("cookie-parser");
 //const session = require("express-session");
-//const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 //const saltRounds = 10;
 
 const app = express();
@@ -77,31 +77,42 @@ app.post ("/api/insert", function(req,res){
   }
 });
 */
-app.post('/api/login',function(req,res){
-    const username = req.body.username;
-    const password = req.body.password;
-    const sqlsel="SELECT * FROM users WHERE Name = ? AND password = ?;"
-    connection.query(sqlsel,[username,password],(err,result)=>{
-      if (err) {
-      res.send({ err: err });
+app.post("/api/login", function (req, res) {
+  var username = req.body.username; //value from textfield
+  var password = req.body.password; //value from textfield
+  if (username && password) {
+    // if user fill all text input
+    connection.query(
+      "SELECT * FROM users where Name=?", //update
+      [username],
+      function (error, row) {
+        if (row.length < 1) {
+          res.send({
+            success: false,
+            message: "Incorrect Name and/or Password!",
+          });
+        }
+         else if (row.length > 1) {
+          console.log(username);
+
+            res.send({
+              success: true,
+              username: row[0].Name,
+           
+            });
+           } else {
+          res.send({
+            success: false,
+            message: "Incorrect Email and/or Password!",
+          });
+        }
       }
-      if (result) {
-        res.send(result);}
-        else{res.send({ message: "User doesn't exist" });}
-      /*  bcrypt.compare(password, result[0].password, (error, response) => {
-          if (response) {
-            req.session.user = result;
-            console.log(req.session.user);
-            res.send(result);
-          } else {
-            res.send({ message: "Wrong username/password combination!" });
-          }
-        });
-      } else {
-        res.send({ message: "User doesn't exist" });
-      }*/
-    });
-})
+    );
+  } else {
+    res.send({ message: "Please enter Username and Password!" });
+    res.end();
+  }
+});
 app.listen(PORT, () =>{
     console.log("APP running on port 3001" );
 });

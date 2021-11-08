@@ -3,7 +3,6 @@ import "./SignUp.css";
 import { Link } from "react-router-dom";
 import Axios from 'axios';
 
-
 function Register() {
   const ColorblackLine = ({ color }) => (
     <hr
@@ -14,6 +13,7 @@ function Register() {
       }}
     />
   );
+
   const [Name,setusername] =  useState('');
   const [city,setcity] =  useState('');
   const handleChange = (event) =>{ setcity(event.target.value); };
@@ -24,6 +24,7 @@ function Register() {
   const [password,setpassword] =  useState('');
   const [resetpassword,setresetpassword] =  useState('');
 
+  const [img,setimg] =useState('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png');
 
 
   const register = () =>
@@ -45,10 +46,35 @@ function Register() {
       console.log(response);
     })
   },[])
-
-
+ 
+  const imageHandler = ((e) => {
+    const reader = new FileReader();
+    reader.onload= () =>{
+      if(reader.readyState === 2){
+        this.setState({img: reader.result})
+    }
+    }
+    reader.readAsDataURL(e.target.files[0])
+  });
+ 
   return (
-    <div class="container">
+    <div className="cont">
+    <div className="Page">
+    <div className="containerr">
+      <div className="img-holder">
+        <img src={img} alt="" id="img" className="img" />
+      </div>
+      <input type="file" accept="image/*" name="image-upload" id="input" onChange={imageHandler} />
+      <div className="label">
+      <label className="image-upload" htmlFor="input" onChange={(e)=>{setimg(e.target.value)}}>
+        <i className="material-icons">add_photo_alternate</i>
+        Choose your Photo
+      </label>
+      </div>
+    </div>
+  </div>
+    
+    <div className="container">
       <form >
         <h1>SIGN UP</h1> <br />
         <p>Please fill your information to create your account.</p> <br />
@@ -143,6 +169,8 @@ function Register() {
           </p>
         </div>
       </form>
+    </div>
+
     </div>
   );
 }
