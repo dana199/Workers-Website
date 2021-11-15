@@ -71,39 +71,39 @@ function Register() {
         <i className="material-icons">add_photo_alternate</i>
       </label>
       </div>
-    </div>
-  </div>
-    
-    <div className="container">
-      <form >
-        <h1>SIGN UP</h1> <br />
-        <p>Please fill your information to create your account.</p> <br />
-        <ColorblackLine color="black" />
-      
+      <div style={{marginTop:'-8rem' , marginLeft:'1rem'}}> 
+      <ColorblackLine/>
+        <form action="/UserProfile">
+       <span> <i class="fa fa-user icon"></i> </span>
         <label for="name">
           <b>Your Name OR Your Company Name </b>
         </label>
         <input
-          i=" fas fa-save"
+        
           type="text"
           placeholder="Enter Your Name OR Your Company Name"
           name="name"
           onChange={(e)=>{setusername(e.target.value)}}
           id="name"
           required
+          
         />
-        <label for="City">
+        <div>
+         <span> <i class="fas fa-city"></i> </span>
+         <label for="City">
           <b> City</b>
-        </label>
-        <select  name ="city" value={city} label="city" onChange={handleChange}>
+         </label>
+         <select  name ="city" value={city} label="city" onChange={handleChange}>
           <option>Nablus</option>
           <option>Jenin</option>
           <option>Ramallah</option>
           </select>
-      
+          <br></br>
+          </div>  
+
         <label for="PhoneNumber">
           <b> Phone Number</b>
-        </label>
+         </label>
         <input
           type="text"
           placeholder="Enter Phone Number"
@@ -128,7 +128,7 @@ function Register() {
           <option>Blacksmith</option>
           </select>
 
-        <label for="email">
+          <label for="email">
           <b>Email</b>
         </label>
         <input
@@ -169,11 +169,13 @@ function Register() {
             Already have an account? <Link to="/log-in">Log in</Link>.
           </p>
         </div>
-      </form>
-    </div>
+        
+        </form>
 
+      </div>
+    </div>
+  </div>
     </div>
   );
 }
-
 export default Register;

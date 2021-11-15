@@ -3,8 +3,8 @@ $color-green : lightseagreen;
 $color-black: black;
 $percent: 100%;
 $distance: 35%;
-$margin: -10%;
-$font: 15px;
+$Margin: -10%;
+$fontt: 15px;
 
 .Modal {
   top:11%;
@@ -20,7 +20,7 @@ $font: 15px;
     display: flex;
     flex-direction: column;
     top: 20%;
-    left: 20%;
+    left: 25%;
     width: 50%;
     height: 60%;
     padding: 5%;
@@ -32,8 +32,8 @@ $font: 15px;
 .Close {
   color: $color-black;
   float: right;
-  margin-top: $margin;
-  margin-right: $margin;
+  margin-top: $Margin;
+  margin-right: $Margin;
 
   &:hover{
     color: $color-green;
@@ -51,18 +51,12 @@ $font: 15px;
   opacity: 0.9;
 }
 
-input {
-  height: 30%;
-  margin-bottom: 10%;
-  font-size: $font;
-}
-
 .AddButton {
   background-color: $color-green;
   padding: 10px 20px;
   border: 0;
   color: white;
-  font-size: $font;
+  font-size: $fontt;
   font-weight: bold;
   cursor: pointer;
 

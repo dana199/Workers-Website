@@ -30,6 +30,9 @@ export class UserProfile extends Component {
      handlepopup=()=>{
         this.setState({openPopup:true});
       }
+      handleclose=()=>{
+        this.setState({openPopup:false});
+      }
   render(){
     return(
       <div className="page">
@@ -79,7 +82,7 @@ export class UserProfile extends Component {
        </div>
       </div>
       {this.state.openPopup && <Popup toggle={this.handlepopup} />}
-       
+   
 </div>
 
 )

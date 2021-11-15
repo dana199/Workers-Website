@@ -30,11 +30,11 @@ render(){
                   uid: '-1',
                   name: 'image.png',
                   status: 'done',
-                  url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+                  url: 'https://atendesigngroup.com/sites/default/files/18-08-10---Show-Your-Work-02_0.png',
                 }
               ],
             };
-            //handleCancel = () => this.setState({ previewVisible: false });
+            handleCancel = () => this.setState({ previewVisible: false });
             //Image Preview
             handlePreview = async file => {
               if (!file.url && !file.preview) {
@@ -85,14 +85,14 @@ render(){
         <div class="Modal">
         <div class="Modal_content">
         <a href="javascript:void(0);" onClick={this.handleCancel}>Close</a>
-            <div className="MainDiv">
-            <div className="container">
+            <div>
+            <div>
           <PicturesWall />
         </div>
         </div>
         <div><button className="savebtn">Save</button></div>
         </div>
-        {this.state.visible && <Popup toggle={this.handleCancel} />}
+      
     </div >
     )
 }}
