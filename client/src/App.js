@@ -9,6 +9,7 @@ import resetpassword from './components/pages/resetpassword';
 import UserProfile from './components/pages/UserProfile';
 import { useTranslation } from "react-i18next";
 import LanguageSelect from "./languageSelect";
+import About from'./components/pages/About';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
      <Route path='/log-in' component={login} />
      <Route path='/reset-pass' component={resetpassword} />
      <Route path='/UserProfile' component={UserProfile}/>
+     <Route path='/About' component={About}/>
 
    </Switch>
    </Router>

@@ -20,31 +20,14 @@ function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const[name,setName]=useState("");
+    //const[name,setName]=useState("");
     const [loginStatus, setLoginStatus] = useState("");
     //Axios.defaults.withCredentials = true;
 
 const loginbutt = () => {
-    fetch("http://localhost:3001/api/login", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
-    })
-      .then((response) => response.json())
-      .then((res) => {
-        if (res.success === true) {
-          console.log(res);
-        }
-      })
-      .done();
-      history.push('/UserProfile')
-  };
+   history.push('/UserProfile')
+  }
+      
 
 
       useEffect(() => {
@@ -71,8 +54,9 @@ const loginbutt = () => {
        id="psw" required/>
     
      <button type='submit'
-      onClick={()=>{history.push('/UserProfile')}}
+      onClick={loginbutt}
       class="registerbtn"
+   
      >Log in </button> 
       <div class="Container signin">
       <p>Don't have an account?<a href="/Sign-Up">Sign up</a>.</p>

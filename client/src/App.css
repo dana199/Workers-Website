@@ -1,3 +1,6 @@
+.App{
+  text-align: center;
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,8 +9,7 @@
 }
 
 .home,
-.services,
-.products,
+.About,
 .sign-up {
   display: flex;
   height: 90vh;
@@ -16,14 +18,14 @@
   font-size: 3rem;
 }
 
-.services {
+.About {
   background-image: url('');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   color: #fff;
   font-size: 100px;
-}
+}*/
 
 /*.products {
   background-image: url('');

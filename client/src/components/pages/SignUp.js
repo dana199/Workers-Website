@@ -47,15 +47,16 @@ function Register() {
     })
   },[])
  
-  const imageHandler = ((e) => {
-    const reader = new FileReader();
+  const imageHandler = (e) => {
+    setimg(URL.createObjectURL(e.target.files[0]))
+   /* const reader = new FileReader();
     reader.onload= () =>{
       if(reader.readyState === 2){
         this.setState({img: reader.result})
     }
     }
-    reader.readAsDataURL(e.target.files[0])
-  });
+    reader.readAsDataURL(e.target.files[0])*/
+  }
  
   return (
     <div className="cont">
@@ -68,7 +69,6 @@ function Register() {
       <div className="label">
       <label className="image-upload" htmlFor="input" onChange={(e)=>{setimg(e.target.value)}}>
         <i className="material-icons">add_photo_alternate</i>
-        Choose your Photo
       </label>
       </div>
     </div>
@@ -81,9 +81,10 @@ function Register() {
         <ColorblackLine color="black" />
       
         <label for="name">
-          <b>Your Name OR Your Company Name</b>
+          <b>Your Name OR Your Company Name </b>
         </label>
         <input
+          i=" fas fa-save"
           type="text"
           placeholder="Enter Your Name OR Your Company Name"
           name="name"
@@ -118,12 +119,12 @@ function Register() {
         <select name="services" value={servesesoffered} onChange={handlechange2}>
           <option>Electricals</option>
           <option>Carpentry</option>
-          <option>furniture transfare</option>
-          <option>painting</option>
+          <option>Furniture transfare</option>
+          <option>Painting</option>
           <option>Cleaning</option>
-          <option>plumping</option>
+          <option>Plumping</option>
           <option>Car Washing</option>
-          <option>Air condition</option>
+          <option>Air conditioner</option>
           <option>Blacksmith</option>
           </select>
 

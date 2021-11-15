@@ -78,8 +78,8 @@ app.post ("/api/insert", function(req,res){
 });
 */
 app.post("/api/login", function (req, res) {
-  var username = req.body.username; //value from textfield
-  var password = req.body.password; //value from textfield
+  const username = req.body.username; //value from textfield
+  const password = req.body.password; //value from textfield
   if (username && password) {
     // if user fill all text input
     connection.query(
