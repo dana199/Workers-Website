@@ -1,0 +1,54 @@
+.pag{
+ padding: 20px;
+ margin:20px;
+}
+.card-container{
+ width:350px;
+ height: 500px;
+ overflow: hidden;
+ box-shadow: 0px 0px 15px -5px;
+ transition: 0.3s;
+ animation: ease-in;
+}
+
+.card-container:hover{
+    transform: scale(1.1);
+    box-shadow: 0px 0px 15px 0px;
+
+}
+.image-container img{
+    overflow: hidden;
+    height: 200px;
+    width: 400px;
+
+}
+.card-content{
+margin: 1rem;
+margin-top: 0.5rem;
+}
+h3,p{
+    margin: 0;
+    padding: 0;
+}
+.card-title{
+    margin-bottom: 0.5rem;
+}
+.buttonv{
+display: flex;
+justify-content: center;
+}
+.buttonv button{
+    padding: 0.5rem;
+    background-color: white;
+    border: none;
+    transition: 0.2s;
+}
+.buttonv button:hover{
+    background:rgb(214, 226, 241) ;
+}
+a{
+    text-transform: uppercase;
+    color:rgb(53, 135, 218);
+    text-decoration:none ;
+    font-weight: bold;
+}

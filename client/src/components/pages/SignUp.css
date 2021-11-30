@@ -42,6 +42,7 @@ body {
 
   .cont{
     display: flex;
+    height: 50px;
   }
   
   .contai {
@@ -103,7 +104,8 @@ body {
   }
   
   .Page{
-    height:85vh;
+   
+    height:40%;
     background-color: rgb(255, 255, 255);
     display:flex;
     flex-direction: row;
@@ -112,14 +114,15 @@ body {
     justify-content:center;
     padding: 20px;
     margin-left: 30%;
+    margin-bottom: 0;
     
 }
 .containerr{
-  
-    height: 900px;
+    height: 100px;
     width: 600px;
     border-radius: 10px;
     background-color: rgb(255, 255, 255);
+    margin-bottom: 0;
 }
 
 .img-holder{
@@ -144,7 +147,7 @@ body {
 }
 .label{
     width: 100%;
-    margin-top: 1rem;
+    margin-top: 0rem;
     display: flex;
     justify-content: center;
 }

@@ -43,6 +43,11 @@ function Navbar() {
                    { t('About') }
                  </Link>
              </li>
+             <li className='nav-item'>
+                 <Link to='/Contact' className='nav-links' onClick={closeMobileMenu}>
+                   { t('Contact') }
+                 </Link>
+             </li>
           
              <li>
               <Link

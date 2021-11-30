@@ -2,11 +2,10 @@
 import React, { useState,useEffect } from 'react';
 import './login.css';
 import Axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 function Login() {
     let history = useHistory();
-
     const ColorblackLine = ({ color }) => (
         <hr
             style={{
@@ -16,38 +15,41 @@ function Login() {
             }}
         />
     );
-
-    const [username, setUsername] = useState("");
+    const [email, setemail] = useState("");
     const [password, setPassword] = useState("");
 
-    //const[name,setName]=useState("");
-    const [loginStatus, setLoginStatus] = useState("");
-    //Axios.defaults.withCredentials = true;
-
 const loginbutt = () => {
-   history.push('/UserProfile')
-  }
-      
-
-
-      useEffect(() => {
+   Axios.post("http://localhost:3001/login",{
+     email:email,
+     password:password
+   }).then(res =>{
+  // localStorage.setItem('token',res.token);
+    history.push('/UserProfile');
+    alert("login successful");
+    console.log(res);
+   });
+  };
+     /* useEffect(() => {
         Axios.get("http://localhost:3001/api/login").then((response) => {
           if (response.data.loggedIn == true) {
             setLoginStatus(response.data.user[0].username);
           }
         });
-      }, []);
+      }, []);*/
 
     return (
-        <div class="Container">
-           <form>
+      <div className="Page">
+      <div className="containerr">
+           <form action='/UserProfile'>
           <h1>Log in</h1> 
-          <ColorblackLine color="black" />
+          <ColorblackLine/>
+          <span> <i class="fas fa-user-circle"></i> </span>
           <label for="username"><b>User name</b></label>
-          <input type='text' placeholder="Enter User name" name="username"
-          onChange={(e)=>{setUsername(e.target.value)}}
+          <input type='text' placeholder="Enter User name" name="email"
+          onChange={(e)=>{setemail(e.target.value)}}
           id="uname" required/>
-
+            
+          <span><i class="fas fa-unlock-alt"></i></span>
           <label for="password"><b>Password</b></label>
       <input type='password' placeholder="Enter Password" name="password" 
       onChange={(e)=>{setPassword(e.target.value)}}
@@ -65,6 +67,7 @@ const loginbutt = () => {
       <p>Forget passward?<a href="/reset-pass">Reset </a>.</p> </div>
     </div>
   </form>
+    </div>
     </div>
   );
 }

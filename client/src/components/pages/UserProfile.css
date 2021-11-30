@@ -102,9 +102,24 @@
     font-size:80%;
     border-radius: 5px;
 }
-.datepicker {
-  text-align: center;
-  width:20px;
-  height: 40px;
-    background: rgb(3, 27, 73);
+.bttn{
+  background-color:  rgba(20, 4, 92, 0.91);
+  width: 7%;
+  align-items: center;
+  
 }
+.react-calendar {
+  /* width: 350px;
+  max-width: 100%; */
+  /* background: rgb(6, 222, 230);
+  border: 1px solid #04a19a; */
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.125em;
+}
+.icon {
+  fill: #007EFF;
+  stroke: white;
+  font-size: 3em;
+
+}
+

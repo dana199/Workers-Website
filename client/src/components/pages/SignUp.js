@@ -1,9 +1,12 @@
 import React ,{useState,useEffect} from "react";
 import "./SignUp.css";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import Axios from 'axios';
+import 'semantic-ui-css/semantic.min.css';
+import { AsyncStorage } from "AsyncStorage";
 
 function Register() {
+  let history = useHistory();
   const ColorblackLine = ({ color }) => (
     <hr
       style={{
@@ -23,22 +26,30 @@ function Register() {
   const [Email,setemail] =  useState('');
   const [password,setpassword] =  useState('');
   const [resetpassword,setresetpassword] =  useState('');
+  const [faceac,setfaceac] = useState('');
+  const [Disc,setDisc] = useState('');
 
   const [img,setimg] =useState('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png');
 
 
   const register = () =>
   {
-     Axios.post("http://localhost:3001/api/insert",{
+     Axios.post("insert",{
        Name: Name,
        City: city,
+       disc:Disc,
        phoneNumber:PhoneNumber,
+       Face:faceac,
        servicesoffered: servesesoffered,
        Email: Email,
        password:password,
-       resetpassword:resetpassword
+       resetpassword:resetpassword,
+     
+       
      }).then(()=>{
-       alert("successful Insert");
+       AsyncStorage.setItem('Name',Name);
+       history.push('/UserProfile');
+      alert("successful Insert");
      });
   };
   useEffect (() =>{
@@ -68,26 +79,28 @@ function Register() {
       <input type="file" accept="image/*" name="image-upload" id="input" onChange={imageHandler} />
       <div className="label">
       <label className="image-upload" htmlFor="input" onChange={(e)=>{setimg(e.target.value)}}>
-        <i className="material-icons">add_photo_alternate</i>
+      <span >  <i className="material-icons">add_photo_alternate</i> </span>
       </label>
       </div>
-      <div style={{marginTop:'-8rem' , marginLeft:'1rem'}}> 
+      <div style={{marginTop:'-7rem' , marginLeft:'1rem'}}> 
       <ColorblackLine/>
         <form action="/UserProfile">
-       <span> <i class="fa fa-user icon"></i> </span>
+          <div>
+       <span> <i class="fas fa-user-circle"></i> </span>
         <label for="name">
           <b>Your Name OR Your Company Name </b>
         </label>
         <input
-        
+           icon='user circle'
           type="text"
           placeholder="Enter Your Name OR Your Company Name"
           name="name"
           onChange={(e)=>{setusername(e.target.value)}}
           id="name"
           required
-          
         />
+        </div>
+
         <div>
          <span> <i class="fas fa-city"></i> </span>
          <label for="City">
@@ -99,8 +112,27 @@ function Register() {
           <option>Ramallah</option>
           </select>
           <br></br>
-          </div>  
+          </div>
 
+          <div>
+           
+         <span> <i class="fas fa-address-card"></i></span>
+        <label for="disc">
+          <b> Description</b>
+         </label>
+        <input
+          type="text"
+          placeholder="Enter Discreption"
+          name="disc"
+          onChange={(e)=>{setDisc(e.target.value)}}
+          id="disc"
+          required
+        />
+      </div>
+
+         <div>
+        
+         <span> <i class="fas fa-phone-square-alt"></i></span>
         <label for="PhoneNumber">
           <b> Phone Number</b>
          </label>
@@ -112,7 +144,24 @@ function Register() {
           id="PhoneNumber"
           required
         />
-      
+      </div>
+
+      <div>
+         <span> <i class="fab fa-facebook"></i></span>
+        <label for="Face">
+          <b> Facebook Account</b>
+         </label>
+        <input
+          type="text"
+          placeholder="Enter Facebook Account"
+          name="Face"
+          onChange={(e)=>{setfaceac(e.target.value)}}
+          id="Face"
+          required
+        />
+      </div>
+
+      <div>
         <label for="services">
           <b>Services that are offered</b>
         </label>
@@ -127,8 +176,13 @@ function Register() {
           <option>Air conditioner</option>
           <option>Blacksmith</option>
           </select>
+          <br></br>
+       </div>
 
-          <label for="email">
+        <div>
+        
+        <span><i class="fas fa-envelope-square"></i></span>
+        <label for="email">
           <b>Email</b>
         </label>
         <input
@@ -139,6 +193,9 @@ function Register() {
           id="email"
           required
         />
+        </div>
+
+<span><i class="fas fa-key"></i></span>
         <label for="psw">
           <b>Password</b>
         </label>
@@ -150,7 +207,9 @@ function Register() {
           id="psw"
           required
         />
-        <label for="psw-repeat">
+
+<span><i class="fas fa-key"></i></span>
+       <label for="psw-repeat">
           <b>Repeat Password</b>
         </label>
         <input
@@ -164,7 +223,7 @@ function Register() {
         <button onClick={register} type="submit" class="registerbtn">
           Sign up
         </button>
-        <div class="container signin">
+        <div >
           <p>
             Already have an account? <Link to="/log-in">Log in</Link>.
           </p>
