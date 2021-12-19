@@ -1,0 +1,37 @@
+$bgColor: rgb(205, 228, 235);
+$color-green : rgb(39, 134, 212);
+$color-black: black;
+$percent: 100%;
+$distance: 35%;
+$Margin: -8%;
+$fontt: 15px;
+
+
+.Card{
+    background-color: $bgColor;
+    width: 50%;
+    height: 90px;
+  
+    border-radius: 5px;
+    font-size: $percent;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.6);
+}
+.Add {
+    background-color: $bgColor;
+    width: 95%;
+    margin: 3%;
+    margin-top: -5%;
+    border-radius: 2%;
+    padding: -3%;
+    border-width: 0;
+}
+.Icon {
+    float: right;
+    padding: 0;
+    border-width: 0;
+    border-radius: 5%;
+    font-size: $percent;
+    background-color: $bgColor;
+    cursor: pointer;
+}

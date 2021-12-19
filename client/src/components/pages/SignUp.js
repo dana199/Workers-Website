@@ -3,9 +3,8 @@ import "./SignUp.css";
 import { Link,useHistory } from "react-router-dom";
 import Axios from 'axios';
 import 'semantic-ui-css/semantic.min.css';
-import { AsyncStorage } from "AsyncStorage";
 
-function Register() {
+function Register(props) {
   let history = useHistory();
   const ColorblackLine = ({ color }) => (
     <hr
@@ -30,7 +29,11 @@ function Register() {
   const [Disc,setDisc] = useState('');
 
   const [img,setimg] =useState('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png');
-
+  const [data,setdata] = useState({
+          name:'',
+          email:'',
+          city:'',
+          PhoneNumber:''});
 
   const register = () =>
   {
@@ -47,8 +50,7 @@ function Register() {
      
        
      }).then(()=>{
-       AsyncStorage.setItem('Name',Name);
-       history.push('/UserProfile');
+      history.push({pathname:'/UserProfile',state:data});
       alert("successful Insert");
      });
   };
@@ -220,11 +222,11 @@ function Register() {
           id="psw-repeat"
           required
         />
-        <button onClick={register} type="submit" class="registerbtn">
+        <button style={{background: 'rgb(39, 134, 212)'}} onClick={register} type="submit" class="registerbtn">
           Sign up
         </button>
-        <div >
-          <p>
+        <div style={{paddingLeft:'30%'}} >
+          <p >
             Already have an account? <Link to="/log-in">Log in</Link>.
           </p>
         </div>

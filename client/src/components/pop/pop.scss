@@ -1,0 +1,61 @@
+$bgColor: rgb(176, 211, 221);
+$color-green : rgb(39, 134, 212);
+$color-black: black;
+$percent: 100%;
+$distance: 35%;
+$Margin: -8%;
+$fontt: 15px;
+
+$distance: 20%;
+$margin: -11%;
+$font: 15px;
+
+.Modall {
+    top:9%;
+    left: 0;
+    position:absolute;
+    width:$percent ;
+    height: $percent;
+    //background-color: rgba(230, 230, 230, 0.904);
+
+  &_content{
+    background-color: $bgColor;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 20%;
+    left: 25%;
+    width: 50%;
+    height: 60%;
+    padding: 5%;
+    border-radius: 8px;
+    border: 2px solid $color-black;
+  }
+}
+
+.close {
+  color: $color-black;
+  float: right;
+  margin-top: $margin;
+  margin-right: $margin;
+
+  &:hover{
+    color: $color-green;
+    cursor: pointer;
+  }
+}
+
+.addButton {
+   
+  background-color: $color-green;
+  padding: 10px 20px;
+  border: 0;
+  color: white;
+  font-size: $font;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+}

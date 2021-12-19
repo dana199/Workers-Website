@@ -2,7 +2,8 @@
 import React, { useState,useEffect } from 'react';
 import './login.css';
 import Axios from 'axios';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 function Login() {
     let history = useHistory();
@@ -15,19 +16,23 @@ function Login() {
             }}
         />
     );
-    const [email, setemail] = useState("");
+    const [Email, setemail] = useState("");
     const [password, setPassword] = useState("");
 
 const loginbutt = () => {
-   Axios.post("http://localhost:3001/login",{
-     email:email,
-     password:password
-   }).then(res =>{
-  // localStorage.setItem('token',res.token);
-    history.push('/UserProfile');
-    alert("login successful");
-    console.log(res);
-   });
+  let data={ email:Email,
+         password:password }
+   Axios.post("http://localhost:3001/login",data).then(res =>{
+    if (res.data['error'] != null ){
+      alert("Email or password  not found");
+    console.log(res.data['error']);
+    }
+    else {
+      alert("login successful");
+      history.push({ pathname: '/UserProfile', state: res.data} );// send res.data to userProfile
+    }
+   })
+   .catch(err=>{console.log(err)})
   };
      /* useEffect(() => {
         Axios.get("http://localhost:3001/api/login").then((response) => {
@@ -36,16 +41,20 @@ const loginbutt = () => {
           }
         });
       }, []);*/
+      const handlesubmit = e =>{
+        e.preventDefault();
+           console.log('works');
+      };
 
     return (
       <div className="Page">
       <div className="containerr">
-           <form action='/UserProfile'>
+           <form onSubmit={handlesubmit}>
           <h1>Log in</h1> 
           <ColorblackLine/>
           <span> <i class="fas fa-user-circle"></i> </span>
           <label for="username"><b>User name</b></label>
-          <input type='text' placeholder="Enter User name" name="email"
+          <input type='text' placeholder="Enter Email" name="email"
           onChange={(e)=>{setemail(e.target.value)}}
           id="uname" required/>
             
@@ -58,7 +67,7 @@ const loginbutt = () => {
      <button type='submit'
       onClick={loginbutt}
       class="registerbtn"
-   
+      style={{background: 'rgb(39, 134, 212)'}}
      >Log in </button> 
       <div class="Container signin">
       <p>Don't have an account?<a href="/Sign-Up">Sign up</a>.</p>

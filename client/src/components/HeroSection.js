@@ -5,20 +5,24 @@ import { Button } from './Button';
 import './HeroSection.css';
 
 class HeroSection extends Component {
-  
- componentDidMount=()=>{ 
-  const config ={
-    headers:{ Authorization: 'Bearer' + localStorage.getItem('token')  }
-  };
-   
-  axios.get('user',config).then(
-    res =>{
-      console.log(res);
-    },
-    err =>{
-      console.log(err);
-    }
-  )}
+  state={};
+  componentDidMount=()=>{ 
+    /* const authRequest = req.clone({
+       headers: req.headers.set("Authorization", "Bearer " + authToken)
+   })*/
+     const config ={
+       headers:{ 'Authorization': 'Bearer' + localStorage.getItem('token')}
+     };
+      
+     axios.get('user',config).then(
+       res =>{
+         this.setState({user: res.data});
+       },
+       err =>{
+         console.log(err);
+       }
+     )}
+
   render(){
   return (
    

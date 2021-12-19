@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
-import {BrowserRouter as Router, Switch, Route,useHistory } from 'react-router-dom'; 
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'; 
 import './App.css';
 import Home from './components/pages/Home';
 import SignUp from './components/pages/SignUp';
@@ -10,9 +10,14 @@ import UserProfile from './components/pages/UserProfile';
 import About from'./components/pages/About';
 import Contact from'./components/pages/Contact';
 import test from './components/pages/test';
-import Chat from './components/pages/Chat';
+
 
 function App() {
+ /* const [token, setToken] = useState();
+
+  if(!token) {
+    return <login setToken={setToken} />
+  }*/
   return (
     <>
     <Router>
@@ -26,8 +31,6 @@ function App() {
      <Route path='/About' component={About}/>
      <Route path='/Contact' component={Contact}/>
      <Route path='/test' component={test}/>
-     <Route path='Chat' component={Chat}/>
-
    </Switch>
    </Router>
     </>

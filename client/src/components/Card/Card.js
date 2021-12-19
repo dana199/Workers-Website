@@ -8,7 +8,7 @@ function Card({title,imageUrl,body}) {
                  <img src={imageUrl} alt='' /> 
             </div>
             <div className="card-content">
-                <div className="card-title">
+                <div className="cti">
                 <h3> {title} </h3>
                 </div>
 
@@ -16,16 +16,10 @@ function Card({title,imageUrl,body}) {
                 <p> {body} </p>
                 </div>
             </div>
-            <div className="buttonv">
-                <button>
-                    <a>
-                        View More
-                    </a>
-                </button>
-
+        
             </div>
         </div>
-        </div>
+     
     )
 }
 
